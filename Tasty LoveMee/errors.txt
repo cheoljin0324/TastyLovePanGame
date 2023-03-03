@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 564: choice menuitem expects a non-empty block.
+    "그래서 내가 진짜 남친임?":
+                     ^
+
+Ren'Py Version: Ren'Py 8.0.3.22090809
+Fri Mar  3 08:30:32 2023
