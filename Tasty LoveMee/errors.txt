@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 564: choice menuitem expects a non-empty block.
-    "그래서 내가 진짜 남친임?":
-                     ^
+File "game/script.rpy", line 656: is not terminated with a newline. (Check strings and parenthesis.)
+(Perhaps you left out a " at the end of the first line.)
+        "지금 보니까 이 누나 얇은 흰색 면티를 입고 있다.
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Fri Mar  3 08:30:32 2023
+Sun Mar  5 14:24:54 2023

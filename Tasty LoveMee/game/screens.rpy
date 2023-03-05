@@ -76,7 +76,6 @@ style frame:
     background Frame("gui/frame.png", gui.frame_borders, tile=gui.frame_tile)
 
 
-
 ################################################################################
 ## 게임내 스크린
 ################################################################################
@@ -350,7 +349,11 @@ screen main_menu():
     ## This ensures that any other menu screen is replaced.
     tag menu
 
-    add gui.main_menu_background
+    if persistent.End:
+        add gui.main_menu_sbackgorund
+    else:
+        add gui.main_menu_background
+    
 
     ## This empty frame darkens the main menu.
     frame:

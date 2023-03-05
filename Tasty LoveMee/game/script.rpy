@@ -12,6 +12,8 @@ define seeman = Character("알바생A", color="#ffffff")
 define seemantwo = Character("알바생B", color="#ffffff")
 define seemanThree = Character("알바생C" , color = "#ffffff")
 
+define persistent.End = False
+
 
 python:
     renpy.musig.register_channel("music",mixer="music", loop=True)
@@ -19,16 +21,16 @@ python:
 
 
 image Angry:
-    "images/Standing/AMee.png"
-    yalign -1.2
+    im.FactorScale("images/Standing/AMee.png",1.1)
+    yalign -0.5
 
 image Smile:
-    "images/Standing/SMee.png"
-    yalign -1.2
+    im.FactorScale("images/Standing/SMee.png",1.1)
+    yalign -0.5
 
 image Normal:
-    "images/Standing/NMee.png"
-    yalign -1.2
+    im.FactorScale("images/Standing/NMee.png",1.1)
+    yalign -0.5
 
 image NormalZoom:
     im.FactorScale("images/Standing/NMee.png",1.5)
@@ -42,6 +44,9 @@ image AngryZoom:
     im.FactorScale("images/Standing/AMee.png",1.5)
     yalign -0.2
 
+image Zhq:
+    im.FactorScale("images/EventCG/zh.png",1.4)
+    yalign 0.5
 
 image bg myhouse = "images/backGround/myroom.png"
 image bg myhousenight = "images/backGround/myroom_night.png"
@@ -65,9 +70,35 @@ image bg icecream = "images/backGround/IceCream.png"
 image bg inturn = "images/backGround/gwanra.png"
 
 image eventCG MeeTurn = "images/EventCG/EventCG1.png"
-image eventCG MeeSum = "images/EventCG/EventCG2.png"
+
+image eventCG MeeTrue2:
+    im.FactorScale("images/EventCG/EventCG1.png",4)
+    xalign 0.47 yalign 0.3
+
+image eventCG MeeSum1:
+    im.FactorScale("images/EventCG/EventCG2.png",4)
+    xalign 0.47 yalign 0.3
+
+image eventCG MeeSum2:
+    im.FactorScale("images/eventCG/EventCG2.png",4)
+    xalign 0.6 yalign 0.65
+
+image eventCG MeeSum3:
+    im.FactorScale("images/eventCG/EventCG2.png", 4)
+    xalign 0.53 yalign 0.2
+
+image eventCG MeeSum4 = "images/eventCG/EventCG2.png"
 
 define name = "백주원"
+
+transform EventEffect:
+        xalign 0.35 yalign 0.7
+        linear 30.0 xalign 0.4 yalign 0.2
+
+transform EventEffect2:
+        xalign 0.5 yalign 0.2
+        linear 20.0 yalign 0.7
+            
 
 transform text_effect:
         block:
@@ -109,7 +140,7 @@ label start:
     if name == "":
         $ name = "백주원"
 
-    "[name] 이 이름이 맞나요?"
+    "[name]... 맞나요?"
 
     menu:
         "네":
@@ -129,11 +160,13 @@ label ingame:
 
     "오늘은 토요일, 학교에 가지 않는 날이다."
     "곧 있으면 시험이지만 난 별 신경 쓰지 않고 게임 폴더를 열었다."
+    show Zhq with dissolve
     "내가 킨 게임은 혼자 하기 좋은 알만툴 공포게임."
     "원래 시험 기간이면 공부를 하는 게 맞지만, 이미 고등학교 서류를 넣어서 결과만 기다리면 되기도 했고."
     "시험 하나 망친다고 딱히 내신도 달라질 게 없어서 마음 편히 게임을 켰다."
     "예전에 언젠가 인터넷에서 방송하는 걸 보고 무료로 깔아뒀던 게임이다."
     "다른 애들이 공부하고 있을 때 게임이라니 심장이 살짝 쫄깃해진다."
+    hide Zhq with dissolve
 
     play sound "audio/SoundEffect/806150_휴대폰 진동소리.mp3"
     scene bg myhouse at callEffect
@@ -346,7 +379,7 @@ label ingame:
     meeyoung "진짜 너무 웃겨."
     hide Smile
     show Normal
-    meeyoung "역시, 놀리는 맛이 있다니까? [name]은."
+    meeyoung "역시, 놀리는 맛이 있다니까? [name] 넌."
     player "그 말 놀릴 때면 꼭 하는 것 같은데."
     meeyoung "안 하면 너 삐칠 거잖아."
     player "진짜 삐집니다?"
@@ -358,7 +391,7 @@ label ingame:
     hide Angry
     show Smile
     meeyoung "나 예쁘지 않아?"
-    meeyoung "매번 솔직하게 말을 못 한다니까, [name]이는?"
+    meeyoung "매번 솔직하게 말을 못 한다니까?"
     player "운전이나 똑바로 하십쇼 선생님."
     hide Smile
     show Angry
@@ -425,7 +458,7 @@ label ingame:
     show Smile
     meeyoung "오 그래도 투정 부리지 않네 [name]?"
     player "나를 무슨 애로 알고 있어 이 누나가."
-    meeyoung "애 맞지 않아? [name] 정도면."
+    meeyoung "애 맞지 않아? [name] 너 정도면."
     player "곧 있으면 고등학교 들어가는 학생한테 못 하는 말이 없으시네요 미영씨."
     hide Smile
     show Normal
@@ -513,7 +546,7 @@ label ingame:
     "그리고 가장 가까운 놀이기구는 미영누나가 말하던 티익스프레스보다 비교적 작아 보이는 롤코같다."
     "아무리 그래도 작지만 무서울 것 같은ㄷ..."
     meeyoung "오 롤러코스터?"
-    meeyoung "[name] 못탄다 하지 않았어? 무서운 거."
+    meeyoung "못탄다 하지 않았어? 무서운 거."
     player "그렇긴한데, 그래도 이 정도면 탈 수 있지 않을까 싶은데."
     meeyoung "지도로는 작게 보여도 꽤 클 텐데 이 놀이기구."
     meeyoung "안타는게 좋지 않을까? 이거."
@@ -568,14 +601,14 @@ label ingame:
     player "아니 본인이 그렇게 말씀하셨잖수."
     hide Angry
     show Smile
-    meeyoung "어머 [name] 사실 기대하고 있었구나?"
+    meeyoung "어머 사실 기대하고 있었구나?"
     player "빨리 놀이기구 타러 가시죠~"
     hide Smile
     show Normal
     meeyoung "알았어."
     hide Normal
     show Smile
-    meeyoung "부끄러움이 많구나 [name]은."
+    meeyoung "부끄러움이 많구나 [name]."
     player "뭐라는 거야 이 누나가? 빨리 가자고."
     "계속해서 나를 추궁하려는 듯 말을 걸어오는 누나를 애써 무시하면서 아까 봤던 롤러코스터가 있는 곳으로 향했다."
     "말을 최대한 무시하면서 말이다."
@@ -625,12 +658,18 @@ label ingame:
 
     play music "audio/Silent Night - DJ Williams.mp3"
 
-    scene eventCG MeeSum with fade
+    scene eventCG MeeSum1 at EventEffect with fade 
 
     "더워서 그런지 땀을 흘리면서 입고 온 가디건을 벗고 있었다."
     "지금 보니까 이 누나 얇은 흰색 면티를 입고 있다."
     "이 누나가 부끄럽지도 않나 그런 옷을 입고..."
+
+    scene eventCG MeeSum3 at EventEffect2 with fade
+
     "괜스레 누나에게서 시선을 피하게 된다."
+
+    scene eventCG MeeSum4 with fade
+
     meeyoung "뭐 봐 [name]?"
     player "아무것도 안 보는데."
     player "그그 ... 누나 더운가 봐?"
@@ -646,7 +685,7 @@ label ingame:
     meeyoung "응 완전."
     player "이 누나가 하루에 몇 번을 놀리는 거야 오늘?"
     "내 말은 아랑곳하지 않고 누나는 능글거리게 다른 곳을 바라본다."
-    meeyoung "[name]은? 안 더워?"
+    meeyoung "너는? 안 더워?"
     player "난 잘 모르겠는데?"
     player "근데 평소보다 춥진 않은 듯."
     meeyoung "부럽네 [name] 더위 안 타서."
@@ -662,7 +701,7 @@ label ingame:
     "그런데 생각보다 레일이 큰데...?"
     player "뭐야 이거 레일 왜 이렇게 큼?"
     show Smile with dissolve
-    meeyoung "뭐야 백주원 겁먹은거야?"
+    meeyoung "뭐야 [name] 겁먹은거야?"
     meeyoung "귀엽네~"
     hide Smile
     show Normal
@@ -715,7 +754,7 @@ label ingame:
     player "으아악..."
     hide Normal with dissolve
     show SmileZoom with dissolve
-    meeyoung "즐겨 백주원."
+    meeyoung "즐겨 [name]."
     meeyoung "이미 늦었으니까."
     meeyoung "꽉 잡고 정신."
     player "예? 미영 씨?"
@@ -763,10 +802,10 @@ label ingame:
     hide Normal
     show Smile
     meeyoung "하하 잡아 손."
-    meeyoung "[name] 생각보다 많이 못 타는구나 무서운 거"
+    meeyoung "생각보다 많이 못 타는구나 무서운 거"
     "미영누나 손을 잡고 움직이려고 하는데 다리가 휘청거린다."
     player "악!"
-    meeyoung "하하 [name] 똑바로 못 서?"
+    meeyoung "하하 똑바로 못 서?"
     hide Smile
     show Normal
     meeyoung "어릴 때 처럼 엎어줄까 예쁜 누나가?"
@@ -824,7 +863,7 @@ label ingame:
     player "이 누나가 말이 되는 농담을 해야지."
     hide Smile
     show Normal
-    meeyoung "왜 말이 안돼? 140일 수도 있지 [name]"
+    meeyoung "왜 말이 안돼? 140일 수도 있지"
     player "너무 막 뱉는 거 아님?"
     meeyoung "그래서 뭐 탈거야?"
     player "저기요?"
@@ -856,7 +895,7 @@ label ingame:
     player "감사히 먹겠습니다."
     hide Angry
     show Smile
-    meeyoung "옳지 착하네! [name]."
+    meeyoung "옳지 착하네!"
     meeyoung "따라와 아마 5분 정도면 걸으면 될 거야."
     player "넵"
     
@@ -924,7 +963,7 @@ label ingame:
     player "어허 빨리 주문이나 하셈."
     hide AngryZoom
     show NormalZoom
-    meeyoung "[name]이 주문하는 거 아니었어?"
+    meeyoung "너가 주문하는 거 아니었어?"
     player "그럼 제가 왜 말했겠습니까?"
     meeyoung "어휴 그래 알았다."
     hide NormalZoom
@@ -933,7 +972,7 @@ label ingame:
     player "아 예."
     hide SmileZoom
     show NormalZoom
-    meeyoung "그래도 [name] 주문 안 해버릇 하면 나중에 사회생활 힘들텐데..."
+    meeyoung "그래도 너 주문 안 해버릇 하면 나중에 사회생활 힘들텐데..."
     player "제 미래는 제가 알아서 하겠음."
     meeyoung "아 그러셔?"
     meeyoung "그래 뭐 내가 졌다~"
@@ -1035,7 +1074,7 @@ label ingame:
     player "잠깐만 기다려보시죠?"
     player "흠...아 범퍼카 어떰?"
     player "예전에 타고 싶었는데 줄 길어서 못 탔던 거 같은데."
-    meeyoung "오 [name] 그런 거 재미있어하는구나"
+    meeyoung "오 그런 거 재미있어하는구나"
     player "재미있다기보다는 타보고 싶다...?"
     meeyoung "거기서 거기 아닌가?"
     hide Normal
@@ -1084,7 +1123,7 @@ label ingame:
     meeyoung "너무?"
     hide Smile
     show Normal
-    meeyoung "반응이 재미있어, [name]은."
+    meeyoung "반응이 재미있어, [name] 너는."
     player "거 참 이 사람이."
     meeyoung "그래도 이제 다리 안 아파 보이는데?"
     player "엉 이제 안 아프긴 한 듯."
@@ -1113,7 +1152,7 @@ label ingame:
     player "그냥 귀찮지 않나?"
     hide Smile
     show Angry
-    meeyoung "설마 [name] 여기까지 와놓고 타기 싫다고 말할 거야?"
+    meeyoung "설마 여기까지 와놓고 타기 싫다고 말할 거야?"
     player "아니요. 그건 아닌..."
     meeyoung "그러면 빨리 줄이나 서."
     hide Angry
@@ -1155,10 +1194,10 @@ label ingame:
     player "레알 요즘 일기예보 맞는 거 본 적 한 번도 없는 듯."
     hide Angry
     show Normal
-    meeyoung "안 더워? [name]은."
+    meeyoung "안 더워?"
     player "난 뭐 원래 더위 별로 안타니까."
     player "땀은 종종 난 것 같긴 한데 더운 건 잘 못 느낀 것 같은데?"
-    meeyoung "부럽네 [name]은 더위 많이 안 타서."
+    meeyoung "부럽네 더위 많이 안 타서."
     player "하하 별말씀을."
     hide Normal
     show Angry
@@ -1227,7 +1266,7 @@ label ingame:
     "그때 이후로는 스마트폰은 주머니에 집어넣고 나는 멍하니 다른 사람이 범퍼카 타는 걸 바라보기만 했다."
     hide Angry
     show Normal
-    meeyoung "심심해 [name]?"
+    meeyoung "심심해?"
     player "아, 응 그런 듯."
     meeyoung "심심한데 가위바위보 할래?"
     player "뭐임 누나 완전 유치함."
@@ -1338,7 +1377,7 @@ label ingame:
     player "이 누나가 갑자기 왜 그럼."
     hide NormalZoom
     show SmileZoom
-    meeyoung "엉큼하잖아 [name], 그럴 거라고 생각했지."
+    meeyoung "엉큼하잖아, 그럴 거라고 생각했지."
     player "거참 너무하시네요."
     player "알았어 하자."
     meeyoung "하하 좋았어."
@@ -1349,7 +1388,7 @@ label ingame:
     player "아 진짜 이게 지네."
     hide Normal
     show Smile
-    meeyoung "내가 이겼네 [name]?"
+    meeyoung "내가 이겼네?"
     player "아이 진짜...누나 뭐할 건데."
     meeyoung "어머 기대하고 있는 거야 [name]?"
     player "아니 뭐래누 이 누나가."
@@ -1420,7 +1459,7 @@ label ingame:
     player "흠 그러게."
     hide Normal
     show Angry
-    meeyoung "여전히 [name]은 생각나는게 더 없고?"
+    meeyoung "여전히 넌 생각나는게 더 없고?"
     player "여전히라뇨 범퍼가 제가 생각한건데."
     hide Angry
     show Smile
@@ -1537,7 +1576,7 @@ label ingame:
     player "으 추워."
     hide Smile
     show Normal
-    meeyoung "잠 깼어 [name]?"
+    meeyoung "잠 깼어?"
     player "안 잤거든?"
     meeyoung "하지만 너 반쯤 감고 있었는데? 눈."
     hide Normal
@@ -1617,11 +1656,11 @@ label ingame:
     hide Smile
     show Normal
     meeyoung "거의는 대체 뭐야?"
-    meeyoung "혹시 뭐 더 탈 놀이기구라도 더 있는 거야 [name]?"
+    meeyoung "혹시 뭐 더 탈 놀이기구라도 더 있는 거야?"
     player "아니 그건 아닌 것 같긴한데 뭔가 예전에 타고 싶었는데 못 탔던 게 있었던 것 같단 말이지..."
     hide Normal
     show Smile
-    meeyoung "역시 자주 까먹네 [name]?"
+    meeyoung "역시 자주 까먹네 [name]."
     player "엥 무슨 소리임?"
     player "역시라니?"
     hide Smile
@@ -1684,7 +1723,7 @@ label ingame:
     player "그런 듯?"
     hide Normal
     show Smile
-    meeyoung "나름 유치한 구석이 있었네 [name]은"
+    meeyoung "나름 유치한 구석이 있었네"
     player "유치해서 죄송합니다~"
     hide Smile
     show Normal
@@ -1704,7 +1743,7 @@ label ingame:
     player "아이고 감사합니다."
     hide Angry
     show Smile
-    meeyoung "그래 더 감사해 [name]."
+    meeyoung "그래 더 감사해"
     player "그런 거치고는 후배한테 삥뜯어서 얻은 표 아니었는지?"
     hide Smile
     show Angry
@@ -1731,7 +1770,7 @@ label ingame:
     hide Normal
     show Smile
     meeyoung "아니? 나름 재미있었는데?"
-    meeyoung "귀여운 [name]이랑 와서?"
+    meeyoung "귀여운 [name]하고 와서?"
     player "ㅁ,뭉ㅇㄴㄻㄻㅎ뭐요?"
     "와 진짜 이 누나 말 너무 무섭게 하네."
     "개인적인 생각이지만 방금 나 아니었으면 분명 대부분 남자는 넘어갔을거다."
@@ -1772,7 +1811,7 @@ label ingame:
     player "됐습니다요. 그리고 춥긴 한데 견딜만함."
     hide Smile
     show Normal
-    meeyoung "하하 그래도 [name] 많이 큰 것 같네, 힘들다고 찡찡대지 않고."
+    meeyoung "하하 그래도 많이 큰 것 같네, 힘들다고 찡찡대지 않고."
     player "제가 언제 그랬다고 말을 그러십니까?"
     meeyoung "내가 말했잖아~ 너 기억 많이 까먹는다고."
     "그렇게 대화 한 번이 끝나고는 더 이상 대화가 맺어지지 않았다."
@@ -1785,7 +1824,7 @@ label ingame:
 
     meeyoung "시간 참 빠르네."
     player "응?"
-    meeyoung "[name] 초등학생 때 막 나한테 애교부리던 때가 엊그제 같은데."
+    meeyoung "너 초등학생 때 막 나한테 애교부리던 때가 엊그제 같은데."
     player "내가 애교를 부렸다고?"
     meeyoung "응 부렸어."
     player "아이고 참 말은 똑바로 하시죠?"
@@ -1809,9 +1848,9 @@ label ingame:
     meeyoung "아마 너한테 전화 왔다면 나한테도 전화 주실 거야."
     player "그런가?"
     "그렇게 말하고는 다시 아무 말도 하지 않는다."
-    meeyoung "그럼 [name] 그 경기게임마이스터고등학교? 입학하면 기숙사 입학하는 건가?"
+    meeyoung "그럼 그 경기게임마이스터고등학교? 입학하면 기숙사 입학하는 건가?"
     player "그런 듯? 애초에 알아보니까 마이스터고등학교는 다 기숙사 생활하는 것 같더라고?"
-    meeyoung "그래? 그럼 [name] 자주 못 봐서 어떻게 해?"
+    meeyoung "그래? 그럼 우리 [name] 자주 못 봐서 어떻게 해?"
     player "뭘 그리 슬퍼하십니까, 주말마다 볼 수는 있지 않나?"
     meeyoung "고등학생인데 주말마다 바쁘지 않을까?"
     player "그런가?"
@@ -1831,11 +1870,11 @@ label ingame:
     meeyoung "그렇구나 벌써 고등학생..."
     player "? 왜 그럼 누나 분위기 잡고?"
     meeyoung "그냥 뭔가 새롭다고 해야 하나?"
-    meeyoung "그렇게 애 같던 [name]이 이제 고등학생이라니."
+    meeyoung "그렇게 애 같던 [name] 너가 이제 고등학생이라니."
     player "그런 거 갖고 뭔 분위기를 잡고 그러십니까?"
     meeyoung "있지 [name]?"
     player "응?"
-    meeyoung "[name]은 고등학교 들어가서 연애 같은 거 할 것 같아?"
+    meeyoung "너는 고등학교 들어가서 연애 같은 거 할 것 같아?"
     "누나는 갑자기 진지하게 분위기를 잡고 그런 말을 꺼낸다."
     player "그게 무슨 소리야 누나 연애 같은걸 할 것 같냐고?"
     "연애라."
@@ -1879,7 +1918,7 @@ label ingame:
     meeyoung "흠...돈?"
     player "없습니다."
     meeyoung "농담이야~"
-    meeyoung "있지 [name]."
+    meeyoung "일단 하나 만 물어볼게"
     player "응?"
     meeyoung "만약에 네가 연애하게 된다면 어떨 것 같아?"
     player "좋지 않을까?"
@@ -1892,9 +1931,11 @@ label ingame:
     "누나는 답답하다는 듯 다음 말을 이었다."
     meeyoung "이걸로 할게 내 소원은."
     player "응? 뭔데?"
+    scene eventCG MeeTrue2 at EventEffect with fade
     meeyoung "앞으로 진짜 네가 누군가와 사귀게 된다면."
     meeyoung "아니면 누군가 너를 좋아하게 된다면."
     meeyoung "넌 그 아이를 버리지 않고 행복하게 해줄래?"
+    scene eventCG MeeTurn with fade
     "누나는 그러고는 더 이상 할 말이 없다는 듯 한숨을 쉬었다."
     "왜 갑자기 소원을 그런 말을 하는 거지?"
     "난 뭐 가게일 도와주거나 그런 건 줄 알았는데..."
@@ -1971,7 +2012,11 @@ init:
         linear 15.0 yalign 10.0
 label crdit:
     scene bg blackOut with dissolve
+    $gui.main_menu_background = "gui/SecondMain.png"
     show text "팀장  김철진\n\n\n\n시나리오  김철진\n\n\n\n개발  김철진\n\n\n\n스탠딩 CG   쵸양 \n\n\n\n 이벤트CG   쵸양,무토 \n\n\n\n 음향   유타랩터\n\n\n\n 도움을 주신 분들\n\n시바쌤  정정배\n\n\n\n" at txt_up
     pause 12
+
+    $ persistent.End = True;
+    $ persistent.setMusic = "audio/Mee/MEE TRUE.mp3"
 
     return
